@@ -56,7 +56,7 @@ export function Button(props: Props) {
 		...rest
 	} = props;
 
-	const buttonClasses = `transition-all duration-200 cursor-pointer focus-visible:outline-1 focus-visible:outline focus-visible:outline-offset-2 border-transparent border-solid ${sizeClasses[size]} ${variantClasses[variant]} ${rest.className}`;
+	const buttonClasses = `transition-all duration-200 cursor-pointer focus-visible:outline-1 focus-visible:outline focus-visible:outline-offset-2 border-transparent border-solid inline-flex items-center ${sizeClasses[size]} ${variantClasses[variant]} ${rest.className}`;
 
 	if (link && !linkOptions?.external) {
 		return (
