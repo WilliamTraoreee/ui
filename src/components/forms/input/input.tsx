@@ -1,4 +1,5 @@
 import { ComponentPropsWithoutRef, useState } from 'react';
+import { Icon } from '../../icon/icon';
 
 interface Props extends ComponentPropsWithoutRef<'input'> {
 	label?: string;
@@ -10,6 +11,8 @@ interface Props extends ComponentPropsWithoutRef<'input'> {
 	errorMessage?: string;
 	rounded?: boolean;
 	gradient?: boolean;
+	icon?: string;
+	iconClassName?: string;
 }
 
 export function Input(props: Props) {
@@ -23,6 +26,8 @@ export function Input(props: Props) {
 		errorMessage,
 		rounded,
 		gradient,
+		icon,
+		iconClassName = '',
 		...rest
 	} = props;
 
@@ -46,8 +51,14 @@ export function Input(props: Props) {
 				<div
 					className={`block transition-all duration-200 relative w-fit ${gradient && !isFocus ? gradientClasses.normal : ''} ${isFocus && gradient ? gradientClasses.focus : ''} ${isSuccess ? gradientClasses.success : ''} ${isError && !isFocus && gradient ? gradientClasses.error : ''} ${rounded ? 'rounded-full' : 'rounded'}`}
 				>
+					{icon && (
+						<Icon
+							name={icon}
+							className={`absolute !text-dark-200 top-1/2 left-2 -translate-y-1/2 ${iconClassName}`}
+						/>
+					)}
 					<input
-						className={`block bg-dark-600 border border-solid border-transparent rounded h-10 outline-none text-white px-3 text-base transition-all duration-200 placeholder:text-dark-300 text-sm ${isSuccess && !gradient ? '!border-success-500' : ''} ${isError && !gradient ? '!border-error-500' : ''} ${rounded ? '!rounded-full' : ''} ${rest.className}`}
+						className={`unset-all appearance-none block bg-dark-600 border border-solid border-transparent rounded h-10 outline-none text-white text-base transition-all duration-200 placeholder:text-dark-300 text-sm ${icon ? 'pl-7 pr-3' : 'px-3'} ${isSuccess && !gradient ? '!border-success-500' : ''} ${isError && !gradient ? '!border-error-500' : ''} ${rounded ? '!rounded-full' : ''} ${rest.className}`}
 						focus={`${gradient ? gradientClasses.focus : 'border-primary-500'}`}
 						onFocus={() => setIsFocus(true)}
 						onBlur={() => setIsFocus(false)}

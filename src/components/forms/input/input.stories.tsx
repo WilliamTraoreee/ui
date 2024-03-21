@@ -16,7 +16,9 @@ type Story = StoryObj<typeof meta>;
 
 export const Component: Story = {
 	args: {
+		type: 'number',
 		label: 'Input label',
 		placeholder: 'Input placeholder',
+		icon: 'i-ri:user-3-line',
 	},
 };

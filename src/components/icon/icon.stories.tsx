@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Component: Story = {
 	args: {
-		name: 'user-line',
+		name: 'i-ri:user-line',
 		className: 'text-5xl',
 	},
 };
