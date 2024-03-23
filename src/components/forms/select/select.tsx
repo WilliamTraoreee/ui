@@ -1,8 +1,12 @@
-import { ComponentPropsWithoutRef, useState } from 'react';
+import { useState } from 'react';
 import { Icon } from '../../icon/icon';
 import { tv } from 'tailwind-variants';
+import { Portal, Select as SelectPrimitive } from '@ark-ui/react';
 
-export interface Props extends ComponentPropsWithoutRef<'input'> {
+type GroupItems = { value: string; label: string }[];
+
+export interface Props {
+	options: GroupItems;
 	label?: string;
 	labelClassName?: string;
 	containerClassName?: string;
@@ -16,19 +20,27 @@ export interface Props extends ComponentPropsWithoutRef<'input'> {
 	icon?: string;
 	iconClassName?: string;
 	children?: React.ReactNode;
+	disabled?: boolean;
+	placeholder?: string;
+	onValueChange?: (values: GroupItems) => void;
+	multiple?: boolean;
 }
 
 const inputTV = tv({
 	slots: {
 		container:
-			'block transition-all duration-200 relative w-full border border-solid border-transparent',
+			'block transition-all duration-200 relative border border-solid border-transparent w-full',
 		input:
-			'unset-all appearance-none block bg-dark-600 border border-solid border-transparent rounded-md h-10 outline-none text-white text-base transition-all duration-200 placeholder:text-dark-300 text-sm font-sans font-medium w-full ',
+			'unset-all appearance-none block bg-dark-600 border border-solid border-transparent rounded-md h-10 outline-none text-white text-base transition-all duration-200 placeholder:text-dark-300 text-sm font-sans font-medium flex justify-between items-center gap-3 w-full',
 		componentContainer: 'w-full flex flex-col gap-2',
 		labelText: 'text-sm font-medium',
 		successMessageText: 'text-sm font-medium text-success-500',
 		errorMessageText: 'text-sm font-medium text-error-500',
 		iconElement: 'absolute top-1/2 left-2 -translate-y-1/2',
+		itemsGroup:
+			'p-3 bg-dark-700 w-80 rounded-md shadow-lg border border-solid border-dark-600 gap-1',
+		itemValue:
+			'text-sm font-medium h-8 flex px-2 items-center rounded justify-between hover:bg-dark-600 transition-all duration-100 ease-in-out cursor-pointer data-[state="checked"]:bg-primary-500 data-[state="checked"]:hover:bg-primary-500 mb-1 last:mb-0',
 	},
 	variants: {
 		gradient: {
@@ -130,7 +142,7 @@ const inputTV = tv({
 	],
 });
 
-export function Input(props: Props) {
+export function Select(props: Props) {
 	const {
 		label,
 		labelClassName = '',
@@ -145,7 +157,11 @@ export function Input(props: Props) {
 		icon,
 		iconClassName = '',
 		children,
-		...rest
+		disabled,
+		options,
+		placeholder,
+		onValueChange,
+		multiple,
 	} = props;
 
 	const [isFocus, setIsFocus] = useState(false);
@@ -157,6 +173,8 @@ export function Input(props: Props) {
 		successMessageText,
 		errorMessageText,
 		iconElement,
+		itemsGroup,
+		itemValue,
 	} = inputTV({
 		gradient,
 		isSuccess,
@@ -164,28 +182,70 @@ export function Input(props: Props) {
 		isFocus,
 		rounded,
 		icon: !!icon,
-		disabled: rest.disabled,
+		disabled: disabled,
 	});
 
 	return (
 		<>
-			<label className={`${componentContainer()} ${containerClassName}`}>
+			<SelectPrimitive.Root
+				multiple={multiple}
+				items={options}
+				onValueChange={(e) => {
+					onValueChange?.(e.items);
+				}}
+				closeOnSelect
+				className={`${componentContainer()} ${containerClassName}`}
+				disabled={disabled}
+				onOpenChange={(e) => {
+					if (e.open) {
+						setIsFocus(true);
+					} else {
+						setIsFocus(false);
+					}
+				}}
+			>
 				{label && (
-					<span className={`${labelText()} ${labelClassName}`}>{label}</span>
+					<SelectPrimitive.Label className={`${labelText()} ${labelClassName}`}>
+						{label}
+					</SelectPrimitive.Label>
 				)}
-				<div className={`${container()} ${inputContainerClassName}`}>
+				<SelectPrimitive.Control
+					className={`${container()} ${inputContainerClassName}`}
+				>
 					{icon && (
 						<Icon name={icon} className={`${iconElement()} ${iconClassName}`} />
 					)}
-					<input
-						{...rest}
-						className={`${input()} ${rest.className}`}
-						onFocus={() => setIsFocus(true)}
-						onBlur={() => setIsFocus(false)}
-					/>
-					{children}
-				</div>
-			</label>
+					<SelectPrimitive.Trigger className={input()}>
+						<SelectPrimitive.ValueText placeholder={placeholder} />
+						<SelectPrimitive.Indicator className='flex items-center justify-center'>
+							<Icon name='i-ri:arrow-down-s-line' />
+						</SelectPrimitive.Indicator>
+					</SelectPrimitive.Trigger>
+				</SelectPrimitive.Control>
+				<Portal>
+					<SelectPrimitive.Positioner>
+						<SelectPrimitive.Content className={`${itemsGroup()}`}>
+							<SelectPrimitive.ItemGroup id='select'>
+								{options.map((item) => (
+									<SelectPrimitive.Item
+										key={item.value}
+										item={item.value}
+										className={`${itemValue()}`}
+									>
+										<SelectPrimitive.ItemText>
+											{item.label}
+										</SelectPrimitive.ItemText>
+										<SelectPrimitive.ItemIndicator>
+											✓
+										</SelectPrimitive.ItemIndicator>
+									</SelectPrimitive.Item>
+								))}
+							</SelectPrimitive.ItemGroup>
+						</SelectPrimitive.Content>
+					</SelectPrimitive.Positioner>
+				</Portal>
+			</SelectPrimitive.Root>
+			{children}
 			{successMessage && (
 				<span className={successMessageText()}>{successMessage}</span>
 			)}
