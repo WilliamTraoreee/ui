@@ -84,6 +84,11 @@ const inputTV = tv({
 				input: 'px-3',
 			},
 		},
+		disabled: {
+			true: {
+				input: '!text-dark-200',
+			},
+		},
 	},
 	compoundVariants: [
 		{
@@ -159,6 +164,7 @@ export function Input(props: Props) {
 		isFocus,
 		rounded,
 		icon: !!icon,
+		disabled: rest.disabled,
 	});
 
 	return (

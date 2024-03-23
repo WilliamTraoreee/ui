@@ -5,17 +5,17 @@ import { tv } from 'tailwind-variants';
 
 const password = tv({
 	slots: {
-		input: '',
+		input: '!pr-9',
 		iconPassword:
 			'absolute right-1 top-1 p-2 bg-transparent border-none flex items-center justify-center cursor-pointer text-base text-dark-200 rounded',
 	},
 	variants: {
 		icon: {
 			true: {
-				input: 'pl-7 !pr-9',
+				input: 'pl-7',
 			},
 			false: {
-				input: 'pl-3 !pr-9',
+				input: 'pl-3',
 			},
 		},
 	},
