@@ -6,5 +6,5 @@ interface Props {
 export function Icon(props: Props) {
 	const { name, className = '' } = props;
 
-	return <i className={`${name} text-white inline-block ${className}`}></i>;
+	return <i className={`${name} inline-block ${className}`}></i>;
 }

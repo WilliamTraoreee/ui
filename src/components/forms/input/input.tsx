@@ -2,10 +2,11 @@ import { ComponentPropsWithoutRef, useState } from 'react';
 import { Icon } from '../../icon/icon';
 import { tv } from 'tailwind-variants';
 
-interface Props extends ComponentPropsWithoutRef<'input'> {
+export interface Props extends ComponentPropsWithoutRef<'input'> {
 	label?: string;
 	labelClassName?: string;
 	containerClassName?: string;
+	inputContainerClassName?: string;
 	isSuccess?: boolean;
 	successMessage?: string;
 	isError?: boolean;
@@ -14,6 +15,7 @@ interface Props extends ComponentPropsWithoutRef<'input'> {
 	gradient?: boolean;
 	icon?: string;
 	iconClassName?: string;
+	children?: React.ReactNode;
 }
 
 const inputTV = tv({
@@ -21,7 +23,7 @@ const inputTV = tv({
 		container:
 			'block transition-all duration-200 relative w-fit border border-solid border-transparent',
 		input:
-			'unset-all appearance-none block bg-dark-600 border border-solid border-transparent rounded-md h-10 outline-none text-white text-base transition-all duration-200 placeholder:text-dark-300 text-sm',
+			'unset-all appearance-none block bg-dark-600 border border-solid border-transparent rounded-md h-10 outline-none text-white text-base transition-all duration-200 placeholder:text-dark-300 text-sm font-sans font-medium',
 		componentContainer: 'w-full flex flex-col gap-2',
 		labelText: 'text-sm font-medium',
 		successMessageText: 'text-sm font-medium text-success-500',
@@ -128,6 +130,7 @@ export function Input(props: Props) {
 		label,
 		labelClassName = '',
 		containerClassName = '',
+		inputContainerClassName = '',
 		isSuccess,
 		successMessage,
 		isError,
@@ -136,6 +139,7 @@ export function Input(props: Props) {
 		gradient,
 		icon,
 		iconClassName = '',
+		children,
 		...rest
 	} = props;
 
@@ -163,16 +167,17 @@ export function Input(props: Props) {
 				{label && (
 					<span className={`${labelText()} ${labelClassName}`}>{label}</span>
 				)}
-				<div className={container()}>
+				<div className={`${container()} ${inputContainerClassName}`}>
 					{icon && (
 						<Icon name={icon} className={`${iconElement()} ${iconClassName}`} />
 					)}
 					<input
-						className={input()}
 						{...rest}
+						className={`${input()} ${rest.className}`}
 						onFocus={() => setIsFocus(true)}
 						onBlur={() => setIsFocus(false)}
 					/>
+					{children}
 				</div>
 			</label>
 			{successMessage && (

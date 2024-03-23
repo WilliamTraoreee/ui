@@ -8,6 +8,9 @@ import {
 
 export default defineConfig({
 	theme: {
+		fonts: {
+			sans: ['Satoshi', 'sans-serif'],
+		},
 		colors: {
 			primary: {
 				'100': '#d4daf8',
@@ -94,7 +97,7 @@ export default defineConfig({
 		presetWebFonts({
 			provider: 'fontshare',
 			fonts: {
-				sans: ['Inter', 'ui-sans-serif'],
+				sans: ['Satoshi', 'ui-sans-serif'],
 			},
 		}),
 		presetIcons({
