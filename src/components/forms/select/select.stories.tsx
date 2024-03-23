@@ -16,6 +16,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Component: Story = {
 	args: {
+		multiple: true,
+		containerClassName: '!w-80',
 		options: [
 			{ value: '1', label: 'Option 1' },
 			{ value: '2', label: 'Option 2' },

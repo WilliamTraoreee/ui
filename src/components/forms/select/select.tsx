@@ -225,22 +225,20 @@ export function Select(props: Props) {
 				<Portal>
 					<SelectPrimitive.Positioner>
 						<SelectPrimitive.Content className={`${itemsGroup()}`}>
-							<SelectPrimitive.ItemGroup id='select'>
-								{options.map((item) => (
-									<SelectPrimitive.Item
-										key={item.value}
-										item={item.value}
-										className={`${itemValue()}`}
-									>
-										<SelectPrimitive.ItemText>
-											{item.label}
-										</SelectPrimitive.ItemText>
-										<SelectPrimitive.ItemIndicator>
-											✓
-										</SelectPrimitive.ItemIndicator>
-									</SelectPrimitive.Item>
-								))}
-							</SelectPrimitive.ItemGroup>
+							{options.map((item) => (
+								<SelectPrimitive.Item
+									key={item.value}
+									item={item.value}
+									className={`${itemValue()}`}
+								>
+									<SelectPrimitive.ItemText>
+										{item.label}
+									</SelectPrimitive.ItemText>
+									<SelectPrimitive.ItemIndicator>
+										✓
+									</SelectPrimitive.ItemIndicator>
+								</SelectPrimitive.Item>
+							))}
 						</SelectPrimitive.Content>
 					</SelectPrimitive.Positioner>
 				</Portal>
