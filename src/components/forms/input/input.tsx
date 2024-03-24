@@ -16,21 +16,35 @@ export interface Props extends ComponentPropsWithoutRef<'input'> {
 	icon?: string;
 	iconClassName?: string;
 	children?: React.ReactNode;
+	suffix?: string;
+	prefix?: string;
 }
 
 const inputTV = tv({
 	slots: {
 		container:
-			'block transition-all duration-200 relative w-full border border-solid border-transparent',
+			'flex items-center transition-all duration-200 relative w-full border border-solid border-transparent bg-dark-600 gap-1',
 		input:
 			'unset-all appearance-none block bg-dark-600 border border-solid border-transparent rounded-md h-10 outline-none text-white text-base transition-all duration-200 placeholder:text-dark-300 text-sm font-sans font-medium w-full ',
 		componentContainer: 'w-full flex flex-col gap-2',
 		labelText: 'text-sm font-medium',
 		successMessageText: 'text-sm font-medium text-success-500',
 		errorMessageText: 'text-sm font-medium text-error-500',
-		iconElement: 'absolute top-1/2 left-2 -translate-y-1/2',
+		iconElement: '!ml-3',
+		suffixElement: 'text-sm font-medium text-dark-300 pr-3',
+		prefixElement: 'text-sm font-medium text-dark-300 pl-3',
 	},
 	variants: {
+		suffix: {
+			true: {
+				input: '!pr-0',
+			},
+		},
+		prefix: {
+			true: {
+				input: '!pl-0',
+			},
+		},
 		gradient: {
 			true: {
 				container:
@@ -78,7 +92,7 @@ const inputTV = tv({
 		},
 		icon: {
 			true: {
-				input: 'pl-7 pr-3',
+				input: 'pl-0 pr-3',
 			},
 			false: {
 				input: 'px-3',
@@ -145,6 +159,8 @@ export function Input(props: Props) {
 		icon,
 		iconClassName = '',
 		children,
+		suffix,
+		prefix,
 		...rest
 	} = props;
 
@@ -157,6 +173,8 @@ export function Input(props: Props) {
 		successMessageText,
 		errorMessageText,
 		iconElement,
+		suffixElement,
+		prefixElement,
 	} = inputTV({
 		gradient,
 		isSuccess,
@@ -165,6 +183,8 @@ export function Input(props: Props) {
 		rounded,
 		icon: !!icon,
 		disabled: rest.disabled,
+		suffix: !!suffix,
+		prefix: !!prefix,
 	});
 
 	return (
@@ -177,12 +197,14 @@ export function Input(props: Props) {
 					{icon && (
 						<Icon name={icon} className={`${iconElement()} ${iconClassName}`} />
 					)}
+					{prefix && <span className={prefixElement()}>{prefix}</span>}
 					<input
 						{...rest}
 						className={`${input()} ${rest.className}`}
 						onFocus={() => setIsFocus(true)}
 						onBlur={() => setIsFocus(false)}
 					/>
+					{suffix && <span className={suffixElement()}>{suffix}</span>}
 					{children}
 				</div>
 			</label>

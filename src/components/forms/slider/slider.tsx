@@ -10,6 +10,8 @@ interface Props {
 	max: number;
 	onValueChange?: (value: number) => void;
 	displayValue?: boolean;
+	valueSuffix?: string;
+	valuePrefix?: string;
 	displayInput?: boolean;
 	inputProps?: InputProps;
 }
@@ -21,6 +23,8 @@ export function Slider(props: Props) {
 		defaultValue = 0,
 		onValueChange,
 		displayValue,
+		valueSuffix,
+		valuePrefix,
 		min,
 		max,
 		displayInput,
@@ -71,7 +75,9 @@ export function Slider(props: Props) {
 								insetInlineStart: `var(--slider-thumb-offset-0)`,
 							}}
 						>
+							{valuePrefix}
 							<SliderPrimitive.ValueText />
+							{valueSuffix}
 						</div>
 					)}
 				</SliderPrimitive.Root>

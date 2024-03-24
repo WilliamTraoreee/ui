@@ -28,5 +28,9 @@ export const Component: Story = {
 		displayValue: true,
 		displayInput: true,
 		label: 'Slider',
+		valueSuffix: 'px',
+		inputProps: {
+			suffix: 'px',
+		},
 	},
 };
