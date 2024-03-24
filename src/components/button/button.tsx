@@ -3,7 +3,7 @@ import { ComponentPropsWithoutRef } from 'react';
 import { VariantProps, tv } from 'tailwind-variants';
 
 const button = tv({
-	base: 'transition-all duration-200 cursor-pointer focus-visible:outline-1 focus-visible:outline focus-visible:outline-offset-2 border-transparent border-solid inline-flex items-center before:rounded',
+	base: 'transition-all duration-200 cursor-pointer focus:outline-1 focus:outline focus:outline-offset-2 border-transparent border-solid inline-flex items-center before:rounded',
 	variants: {
 		size: {
 			xl: 'h-16 px-6 rounded-md font-bold text-lg',
