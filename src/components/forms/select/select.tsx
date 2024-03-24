@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Icon } from '../../icon/icon';
 import { tv } from 'tailwind-variants';
 import { Portal, Select as SelectPrimitive } from '@ark-ui/react';
+import { motion, Variants } from 'framer-motion';
 
 type GroupItems = { value: string; label: string }[];
 
@@ -142,6 +143,36 @@ const inputTV = tv({
 	],
 });
 
+const selectAnimation: Variants = {
+	initial: {
+		y: 10,
+		x: 0,
+		opacity: 0,
+	},
+	in: {
+		x: 0,
+		y: 0,
+		opacity: 1,
+		rotate: 0,
+		transition: {
+			duration: 0.2,
+			ease: 'easeInOut',
+			type: 'tween',
+			stiffness: 60,
+		},
+	},
+	out: {
+		x: 0,
+		y: 200,
+		opacity: 0,
+		transition: {
+			duration: 0.3,
+			stiffness: 100,
+			ease: 'easeInOut',
+		},
+	},
+};
+
 export function Select(props: Props) {
 	const {
 		label,
@@ -165,6 +196,7 @@ export function Select(props: Props) {
 	} = props;
 
 	const [isFocus, setIsFocus] = useState(false);
+
 	const {
 		container,
 		input,
@@ -196,6 +228,8 @@ export function Select(props: Props) {
 				closeOnSelect
 				className={`${componentContainer()} ${containerClassName}`}
 				disabled={disabled}
+				unmountOnExit
+				lazyMount
 				onOpenChange={(e) => {
 					if (e.open) {
 						setIsFocus(true);
@@ -222,24 +256,32 @@ export function Select(props: Props) {
 						</SelectPrimitive.Indicator>
 					</SelectPrimitive.Trigger>
 				</SelectPrimitive.Control>
+
 				<Portal>
 					<SelectPrimitive.Positioner>
-						<SelectPrimitive.Content className={`${itemsGroup()}`}>
-							{options.map((item) => (
-								<SelectPrimitive.Item
-									key={item.value}
-									item={item.value}
-									className={`${itemValue()}`}
-								>
-									<SelectPrimitive.ItemText>
-										{item.label}
-									</SelectPrimitive.ItemText>
-									<SelectPrimitive.ItemIndicator>
-										✓
-									</SelectPrimitive.ItemIndicator>
-								</SelectPrimitive.Item>
-							))}
-						</SelectPrimitive.Content>
+						<motion.div
+							variants={selectAnimation}
+							initial='initial'
+							animate='in'
+							exit='out'
+						>
+							<SelectPrimitive.Content className={`${itemsGroup()}`}>
+								{options.map((item) => (
+									<SelectPrimitive.Item
+										key={item.value}
+										item={item.value}
+										className={`${itemValue()}`}
+									>
+										<SelectPrimitive.ItemText>
+											{item.label}
+										</SelectPrimitive.ItemText>
+										<SelectPrimitive.ItemIndicator>
+											✓
+										</SelectPrimitive.ItemIndicator>
+									</SelectPrimitive.Item>
+								))}
+							</SelectPrimitive.Content>
+						</motion.div>
 					</SelectPrimitive.Positioner>
 				</Portal>
 			</SelectPrimitive.Root>
