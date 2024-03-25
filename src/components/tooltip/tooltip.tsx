@@ -11,7 +11,12 @@ export function Tooltip(props: Props) {
 	const { children, content } = props;
 
 	return (
-		<TooltipPrimitive.Root lazyMount unmountOnExit openDelay={0}>
+		<TooltipPrimitive.Root
+			lazyMount
+			unmountOnExit
+			openDelay={0}
+			positioning={{ placement: 'top' }}
+		>
 			<TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
 			<TooltipPrimitive.Positioner>
 				<motion.div
