@@ -18,6 +18,8 @@ interface Props {
 	valuePrefix?: string;
 	displayInput?: boolean;
 	inputProps?: InputProps;
+	successMessage?: string;
+	errorMessage?: string;
 }
 
 export function Slider(props: Props) {
@@ -35,6 +37,8 @@ export function Slider(props: Props) {
 		max,
 		displayInput,
 		inputProps,
+		successMessage,
+		errorMessage,
 	} = props;
 
 	const [currentValue, setCurrentValue] = useState(defaultValue);
@@ -110,6 +114,16 @@ export function Slider(props: Props) {
 					/>
 				)}
 			</div>
+			{successMessage && (
+				<span className='text-sm font-medium text-success-500'>
+					{successMessage}
+				</span>
+			)}
+			{errorMessage && (
+				<span className='text-sm font-medium text-error-500'>
+					{errorMessage}
+				</span>
+			)}
 		</div>
 	);
 }
