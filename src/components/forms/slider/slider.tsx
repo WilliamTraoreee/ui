@@ -1,10 +1,13 @@
 import { Slider as SliderPrimitive } from '@ark-ui/react';
 import { useState } from 'react';
 import { Input, Props as InputProps } from '../input/input';
+import { Tooltip } from '../../tooltip/tooltip';
+import { Icon } from '../../icon/icon';
 
 interface Props {
 	label?: string;
 	labelClassName?: string;
+	information?: string;
 	defaultValue?: number;
 	min: number;
 	max: number;
@@ -20,6 +23,7 @@ export function Slider(props: Props) {
 	const {
 		label,
 		labelClassName = '',
+		information,
 		defaultValue = 0,
 		onValueChange,
 		displayValue,
@@ -46,7 +50,18 @@ export function Slider(props: Props) {
 	return (
 		<>
 			{label && (
-				<span className={`text-sm font-medium ${labelClassName}`}>{label}</span>
+				<div className='w-full flex gap-2 items-center'>
+					<span className={`text-sm font-medium ${labelClassName}`}>
+						{label}
+					</span>
+					{information && (
+						<Tooltip content={information}>
+							<span className='flex items-center'>
+								<Icon name='i-ri:information-line' className='text-dark-200' />
+							</span>
+						</Tooltip>
+					)}
+				</div>
 			)}
 			<div className='w-full flex items-center gap-5'>
 				<SliderPrimitive.Root

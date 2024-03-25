@@ -1,10 +1,12 @@
 import { ComponentPropsWithoutRef, useState } from 'react';
 import { Icon } from '../../icon/icon';
 import { tv } from 'tailwind-variants';
+import { Tooltip } from '../../tooltip/tooltip';
 
 export interface Props extends ComponentPropsWithoutRef<'input'> {
 	label?: string;
 	labelClassName?: string;
+	information?: string;
 	containerClassName?: string;
 	inputContainerClassName?: string;
 	isSuccess?: boolean;
@@ -161,6 +163,7 @@ export function Input(props: Props) {
 		children,
 		suffix,
 		prefix,
+		information,
 		...rest
 	} = props;
 
@@ -191,7 +194,19 @@ export function Input(props: Props) {
 		<>
 			<label className={`${componentContainer()} ${containerClassName}`}>
 				{label && (
-					<span className={`${labelText()} ${labelClassName}`}>{label}</span>
+					<div className='w-full flex gap-2 items-center'>
+						<span className={`${labelText()} ${labelClassName}`}>{label}</span>
+						{information && (
+							<Tooltip content={information}>
+								<span className='flex items-center'>
+									<Icon
+										name='i-ri:information-line'
+										className='text-dark-200'
+									/>
+								</span>
+							</Tooltip>
+						)}
+					</div>
 				)}
 				<div className={`${container()} ${inputContainerClassName}`}>
 					{icon && (

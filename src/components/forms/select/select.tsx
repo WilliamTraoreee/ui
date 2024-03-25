@@ -3,6 +3,7 @@ import { Icon } from '../../icon/icon';
 import { tv } from 'tailwind-variants';
 import { Portal, Select as SelectPrimitive } from '@ark-ui/react';
 import { motion, Variants } from 'framer-motion';
+import { Tooltip } from '../../tooltip/tooltip';
 
 type GroupItems = { value: string; label: string }[];
 
@@ -10,6 +11,7 @@ export interface Props {
 	options: GroupItems;
 	label?: string;
 	labelClassName?: string;
+	information?: string;
 	containerClassName?: string;
 	inputContainerClassName?: string;
 	isSuccess?: boolean;
@@ -177,6 +179,7 @@ export function Select(props: Props) {
 	const {
 		label,
 		labelClassName = '',
+		information,
 		containerClassName = '',
 		inputContainerClassName = '',
 		isSuccess,
@@ -239,9 +242,23 @@ export function Select(props: Props) {
 				}}
 			>
 				{label && (
-					<SelectPrimitive.Label className={`${labelText()} ${labelClassName}`}>
-						{label}
-					</SelectPrimitive.Label>
+					<div className='w-full flex gap-2 items-center'>
+						<SelectPrimitive.Label
+							className={`${labelText()} ${labelClassName}`}
+						>
+							{label}
+						</SelectPrimitive.Label>
+						{information && (
+							<Tooltip content={information}>
+								<span className='flex items-center'>
+									<Icon
+										name='i-ri:information-line'
+										className='text-dark-200'
+									/>
+								</span>
+							</Tooltip>
+						)}
+					</div>
 				)}
 				<SelectPrimitive.Control
 					className={`${container()} ${inputContainerClassName}`}

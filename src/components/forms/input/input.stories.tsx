@@ -17,5 +17,6 @@ type Story = StoryObj<typeof meta>;
 export const Component: Story = {
 	args: {
 		label: 'Your firstname',
+		information: 'Please enter your firstname',
 	},
 };
