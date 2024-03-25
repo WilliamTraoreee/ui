@@ -8,6 +8,7 @@ interface Props {
 	label?: string;
 	labelClassName?: string;
 	information?: string;
+	containerClassName?: string;
 	defaultValue?: number;
 	min: number;
 	max: number;
@@ -25,6 +26,7 @@ export function Slider(props: Props) {
 		labelClassName = '',
 		information,
 		defaultValue = 0,
+		containerClassName = '',
 		onValueChange,
 		displayValue,
 		valueSuffix,
@@ -48,7 +50,7 @@ export function Slider(props: Props) {
 	};
 
 	return (
-		<>
+		<div className={containerClassName}>
 			{label && (
 				<div className='w-full flex gap-2 items-center'>
 					<span className={`text-sm font-medium ${labelClassName}`}>
@@ -108,6 +110,6 @@ export function Slider(props: Props) {
 					/>
 				)}
 			</div>
-		</>
+		</div>
 	);
 }
