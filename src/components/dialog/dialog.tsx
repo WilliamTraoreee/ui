@@ -21,7 +21,7 @@ const dialogTV = tv({
 	slots: {
 		backdrop: 'fixed inset-0 bg-black/10 bg-opacity-50 z-10',
 		content:
-			'fixed z-100 !bg-dark-800 rounded-lg p-4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 max-w-lg',
+			'fixed z-100 !bg-dark-800 rounded-lg p-4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 max-w-lg shadow-lg',
 		titleElement: 'text-white text-2xl font-medium m-0',
 		motionElement: 'fixed w-full',
 	},
