@@ -1,7 +1,7 @@
 {
 	"name": "@wtraore/ui",
 	"private": false,
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"type": "module",
 	"files": [
 		"dist"
@@ -21,10 +21,10 @@
 	"dependencies": {
 		"@ark-ui/react": "^2.2.3",
 		"framer-motion": "^11.0.20",
-		"react-hot-toast": "^2.4.1"
+		"react-hot-toast": "^2.4.1",
+		"tailwind-variants": "^0.2.1"
 	},
 	"devDependencies": {
-		"tailwind-variants": "^0.2.1",
 		"@chromatic-com/storybook": "^1.2.24",
 		"@iconify-json/ri": "^1.1.20",
 		"@inertiajs/react": "^1.0.15",
