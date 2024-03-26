@@ -1,7 +1,7 @@
 import { RadioGroup } from '@ark-ui/react';
 import { tv } from 'tailwind-variants';
-import { Icon } from '../icon/icon';
-import { Tooltip } from '../tooltip/tooltip';
+import { Icon } from '../../icon/icon';
+import { Tooltip } from '../../tooltip/tooltip';
 
 type RadioItem = { label: string; value: string; disabled?: boolean };
 
