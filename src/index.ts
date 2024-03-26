@@ -1,7 +1,6 @@
 // CSS
 
 import './export.css';
-import 'uno.css';
 
 // Config
 
