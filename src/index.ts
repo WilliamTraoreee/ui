@@ -2,10 +2,6 @@
 
 import './export.css';
 
-// Config
-
-export { config } from './config';
-
 // BASE
 
 export { Avatar } from './components/avatar/avatar';
