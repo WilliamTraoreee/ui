@@ -20,7 +20,16 @@ export default defineConfig({
 			fileName: (format) => `index.${format}.js`,
 		},
 		rollupOptions: {
-			external: ['react', 'react-dom', 'unocss'],
+			external: [
+				'react',
+				'react-dom',
+				'unocss',
+				'react/jsx-runtime',
+				'@inertiajs/react',
+				'tailwind-variants',
+				'framer-motion',
+				'@ark-ui/react',
+			],
 			output: {
 				globals: {
 					react: 'React',
