@@ -93,14 +93,14 @@ const button = tv({
 			gradient: true,
 			variant: 'primary',
 			class: {
-				container: 'from-primary-300 to-primary-500',
+				container: 'from-primary-400 to-primary-500',
 			},
 		},
 		{
 			gradient: true,
 			variant: 'secondary',
 			class: {
-				container: 'from-secondary-300 to-secondary-500',
+				container: 'from-secondary-400 to-secondary-500',
 			},
 		},
 		{
@@ -114,7 +114,7 @@ const button = tv({
 			gradient: true,
 			variant: 'error',
 			class: {
-				container: 'from-error-200 to-error-500',
+				container: 'from-error-300 to-error-500',
 			},
 		},
 		{
