@@ -52,11 +52,6 @@ const inputTV = tv({
 			true: {
 				container:
 					'bg-gradient-to-b transition-all duration-200 to-transparent from-dark-400/30',
-				input: '',
-			},
-			false: {
-				container: '',
-				input: '',
 			},
 		},
 		isSuccess: {

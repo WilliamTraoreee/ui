@@ -32,7 +32,8 @@ export interface Props {
 const inputTV = tv({
 	slots: {
 		container:
-			'block transition-all duration-200 relative border border-solid border-transparent w-full',
+			'flex items-center transition-all duration-200 relative w-full p-[1px] bg-dark-600 gap-1',
+		content: 'bg-dark-600 flex items-center w-full gap-1 rounded-[5px]',
 		input:
 			'unset-all appearance-none block bg-dark-600 border border-solid border-transparent rounded-md h-10 outline-none text-white text-base transition-all duration-200 placeholder:text-dark-300 text-sm font-sans font-medium flex justify-between items-center gap-3 w-full',
 		componentContainer: 'w-full flex flex-col gap-2',
@@ -49,17 +50,12 @@ const inputTV = tv({
 		gradient: {
 			true: {
 				container:
-					'relative border border-transparent bg-clip-padding before:content-[""] before:absolute before:top-0 before:right-0 before:bottom-0 before:left-0 before:z-[-1] before:bg-gradient-to-b before:m-[-1px] before:rounded-md before:transition-all before:duration-200 before:ease-in-out to-transparent !border-none from-dark-400/30',
-				input: '',
-			},
-			false: {
-				container: '',
-				input: '',
+					'!bg-gradient-to-b transition-all duration-200 to-transparent from-dark-400/30',
 			},
 		},
 		isSuccess: {
 			true: {
-				container: 'border-success-500',
+				container: 'bg-success-500',
 			},
 			false: {
 				container: '',
@@ -67,7 +63,7 @@ const inputTV = tv({
 		},
 		isError: {
 			true: {
-				container: 'border-error-500',
+				container: 'bg-error-500',
 			},
 			false: {
 				container: '',
@@ -75,7 +71,7 @@ const inputTV = tv({
 		},
 		isFocus: {
 			true: {
-				container: 'border-primary-500',
+				container: 'bg-primary-500',
 			},
 			false: {
 				container: '',
@@ -108,38 +104,31 @@ const inputTV = tv({
 	compoundVariants: [
 		{
 			gradient: true,
-			rounded: true,
-			class: {
-				container: 'before:rounded-full',
-			},
-		},
-		{
-			gradient: true,
 			isSuccess: false,
 			isError: false,
 			class: {
-				container: 'from-dark-400/30',
+				container: 'from-dark-400/30 bg-transparent',
 			},
 		},
 		{
 			gradient: true,
 			isSuccess: true,
 			isError: false,
-			class: { container: 'from-success-400' },
+			class: { container: 'from-success-400 bg-transparent' },
 		},
 		{
 			gradient: true,
 			isSuccess: false,
 			isError: true,
 			class: {
-				container: 'from-error-400',
+				container: 'from-error-400 bg-transparent',
 			},
 		},
 		{
 			gradient: true,
 			isFocus: true,
 			class: {
-				container: 'from-primary-400',
+				container: 'from-primary-400 bg-transprent',
 			},
 		},
 	],
@@ -202,6 +191,7 @@ export function Select(props: Props) {
 
 	const {
 		container,
+		content,
 		input,
 		componentContainer,
 		labelText,
@@ -263,15 +253,20 @@ export function Select(props: Props) {
 				<SelectPrimitive.Control
 					className={`${container()} ${inputContainerClassName}`}
 				>
-					{icon && (
-						<Icon name={icon} className={`${iconElement()} ${iconClassName}`} />
-					)}
-					<SelectPrimitive.Trigger className={input()}>
-						<SelectPrimitive.ValueText placeholder={placeholder} />
-						<SelectPrimitive.Indicator className='flex items-center justify-center'>
-							<Icon name='i-ri:arrow-down-s-line' />
-						</SelectPrimitive.Indicator>
-					</SelectPrimitive.Trigger>
+					<div className={content()}>
+						{icon && (
+							<Icon
+								name={icon}
+								className={`${iconElement()} ${iconClassName}`}
+							/>
+						)}
+						<SelectPrimitive.Trigger className={input()}>
+							<SelectPrimitive.ValueText placeholder={placeholder} />
+							<SelectPrimitive.Indicator className='flex items-center justify-center'>
+								<Icon name='i-ri:arrow-down-s-line' />
+							</SelectPrimitive.Indicator>
+						</SelectPrimitive.Trigger>
+					</div>
 				</SelectPrimitive.Control>
 
 				<Portal>
