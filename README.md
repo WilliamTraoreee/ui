@@ -1,30 +1,53 @@
-# React + TypeScript + Vite
+# WillUI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+WillUI is a personal UI library made for work with `React` + `UnoCSS` + `InertiaJS`
 
-Currently, two official plugins are available:
+## I don't recommand to install this library
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This library is made for my utilisation and some breaking change can appear without communication about it.
 
-## Expanding the ESLint configuration
+All external issue will be automatically close.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Installation
 
-- Configure the top-level `parserOptions` property like this:
+`npm i @wtraore/ui`
+
+### UnoCSS configuration
 
 ```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+import { defineConfig } from 'unocss';
+import {
+	presetAttributify,
+	presetIcons,
+	presetUno,
+	presetWebFonts,
+} from 'unocss';
+import presetWill from '@wtraore/ui/preset';
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+export default defineConfig({
+	content: {
+		pipeline: {
+			include: [
+				'src/**/*.{js,jsx,ts,tsx}',
+				/@wtraore\/ui\/[A-Za-z0-9]+\/[A-Za-z]+\.(es.js|js|ts|tsx)/,
+			],
+		},
+	},
+	presets: [
+		presetWill(),
+		presetUno(),
+		presetAttributify(),
+		presetWebFonts({
+			provider: 'fontshare',
+			fonts: {
+				sans: ['Satoshi', 'ui-sans-serif'],
+			},
+		}),
+		presetIcons({
+			collections: {
+				ri: () => import('@iconify-json/ri/icons.json').then((i) => i.default),
+			},
+		}),
+	],
+});
+```
