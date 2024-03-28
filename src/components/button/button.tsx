@@ -3,110 +3,147 @@ import { ComponentPropsWithoutRef } from 'react';
 import { VariantProps, tv } from 'tailwind-variants';
 
 const button = tv({
-	base: 'transition-all duration-200 cursor-pointer focus:outline-1 focus:outline focus:outline-offset-2 border-transparent border-solid inline-flex items-center before:rounded',
+	slots: {
+		container:
+			'transition-all duration-200 cursor-pointer focus:outline-1 focus:outline focus:outline-offset-2 border-transparent inline-flex items-center border-none p-[1px] bg-no-repeat bg-cover overflow-hidden',
+		content:
+			'transition-all duration-200 w-full h-full flex items-center rounded-[3px] px-3',
+	},
 	variants: {
 		size: {
-			xl: 'h-16 px-6 rounded-md font-bold text-lg',
-			lg: 'h-13 px-5 rounded-md font-bold text-base',
-			base: 'h-10 px-3 rounded font-bold text-sm',
-			md: 'h-8 px-3 rounded font-bold text-sm',
-			sm: 'h-6 px-2 rounded-sm font-bold text-xs',
+			xl: {
+				container: 'h-16 rounded-md font-bold text-lg',
+				content: 'rounded-md px-6',
+			},
+			lg: {
+				container: 'h-13 rounded-md font-bold text-base',
+				content: 'rounded-md px-5',
+			},
+			base: {
+				container: 'h-10 rounded font-bold text-sm',
+				content: 'rounded px-3',
+			},
+			md: {
+				container: 'h-8 rounded font-bold text-sm',
+				content: 'rounded px-3',
+			},
+			sm: {
+				container: 'h-6 rounded-sm font-bold text-xs',
+				content: 'rounded-sm px-2',
+			},
 		},
 		variant: {
-			primary:
-				'bg-primary-500 hover:bg-primary-600 text-white outline-primary-200',
-			secondary:
-				'bg-secondary-500 hover:bg-secondary-600 text-white outline-secondary-200',
-			success:
-				'bg-success-500 hover:bg-success-600 text-dark-700 outline-success-200',
-			error: 'bg-error-500 hover:bg-error-600 text-white outline-error-200',
-			warning:
-				'bg-warning-500 hover:bg-warning-600 text-dark-700 outline-warning-200',
-			stroke:
-				'bg-dark-500 hover:bg-dark-600 text-white outline-dark-200 !border !border-dark-400',
-			transparent:
-				'bg-transparent hover:bg-dark-600 text-white outline-dark-200',
-			dark: 'bg-dark-600 hover:bg-dark-700 text-white outline-dark-200',
-			light: 'bg-light-200 hover:bg-light-400 text-dark-700 outline-light-200',
+			primary: {
+				container: 'bg-primary-500 hover:bg-primary-600',
+				content:
+					'bg-primary-500 hover:bg-primary-600 text-white outline-primary-200',
+			},
+			secondary: {
+				container: 'bg-secondary-500 hover:bg-secondary-600',
+				content:
+					'bg-secondary-500 hover:bg-secondary-600 text-white outline-secondary-200',
+			},
+			success: {
+				container: 'bg-success-500 hover:bg-success-600',
+				content:
+					'bg-success-500 hover:bg-success-600 text-dark-700 outline-success-200',
+			},
+			error: {
+				container: 'bg-error-500 hover:bg-error-600',
+				content: 'bg-error-500 hover:bg-error-600 text-white outline-error-200',
+			},
+			warning: {
+				container: 'bg-warning-500 hover:bg-warning-600',
+				content:
+					'bg-warning-500 hover:bg-warning-600 text-dark-700 outline-warning-200',
+			},
+			stroke: {
+				container: 'bg-dark-500 hover:bg-dark-600',
+				content:
+					'bg-dark-500 hover:bg-dark-600 text-white outline-dark-200 !border !border-dark-400',
+			},
+			transparent: {
+				container: 'bg-transparent hover:bg-dark-600',
+				content: 'bg-transparent hover:bg-dark-600 text-white outline-dark-200',
+			},
+			dark: {
+				container: 'bg-dark-500 hover:bg-dark-600',
+				content: 'bg-dark-600 hover:bg-dark-700 text-white outline-dark-200',
+			},
+			light: {
+				container: 'bg-light-400 hover:bg-light-500',
+				content:
+					'bg-light-200 hover:bg-light-400 text-dark-700 outline-light-200',
+			},
 		},
 		gradient: {
-			true: 'relative border border-transparent bg-clip-padding before:content-[""] before:absolute before:top-0 before:right-0 before:bottom-0 before:left-0 before:z-[-1] before:bg-gradient-to-b before:m-[-1px]',
+			true: {
+				container: '!bg-gradient-to-b',
+			},
 		},
 		rounded: {
-			true: 'rounded-full',
-			false: 'rounded',
+			true: {
+				content: 'rounded-full',
+				container: 'rounded-full',
+			},
 		},
 	},
 	compoundVariants: [
 		{
 			gradient: true,
-			rounded: true,
-			class: 'before:rounded-full',
-		},
-		{
-			gradient: true,
 			variant: 'primary',
-			class: 'from-primary-400 to-primary-500',
+			class: {
+				container: 'from-primary-300 to-primary-500',
+			},
 		},
 		{
 			gradient: true,
 			variant: 'secondary',
-			class: 'from-secondary-300 to-secondary-500',
+			class: {
+				container: 'from-secondary-300 to-secondary-500',
+			},
 		},
 		{
 			gradient: true,
 			variant: 'success',
-			class: 'from-success-200 to-success-500',
+			class: {
+				container: 'from-success-100 to-success-500',
+			},
 		},
 		{
 			gradient: true,
 			variant: 'error',
-			class: 'from-error-300 to-error-500',
+			class: {
+				container: 'from-error-200 to-error-500',
+			},
 		},
 		{
 			gradient: true,
 			variant: 'warning',
-			class: 'from-warning-200 to-warning-500',
+			class: {
+				container: 'from-warning-200 to-warning-500',
+			},
 		},
 		{
 			gradient: true,
 			variant: 'stroke',
-			class: 'from-dark-400 to-dark-500',
+			class: {
+				container: 'from-dark-300 to-dark-500',
+			},
 		},
 		{
 			gradient: true,
 			variant: 'dark',
-			class: 'from-dark-400 to-dark-500',
+			class: {
+				container: 'from-dark-400 to-dark-500',
+			},
 		},
 		{
 			gradient: true,
 			variant: 'light',
-			class: 'from-white to-light-400',
-		},
-		{
-			gradient: true,
-			size: 'xl',
-			class: 'before:rounded-md',
-		},
-		{
-			gradient: true,
-			size: 'lg',
-			class: 'before:rounded-md',
-		},
-		{
-			gradient: true,
-			size: 'sm',
-			class: 'before:rounded-sm',
-		},
-		{
-			gradient: true,
-			rounded: true,
-			class: 'before:rounded-full',
-		},
-		{
-			gradient: true,
-			rounded: false,
-			class: 'before:rounded',
+			class: {
+				container: 'from-white to-light-400',
+			},
 		},
 	],
 });
@@ -137,7 +174,9 @@ export function Button(props: Props) {
 		...rest
 	} = props;
 
-	const buttonClasses = `${button({ size, variant, gradient, rounded })} ${rest.className}`;
+	const { container, content } = button({ size, variant, gradient, rounded });
+
+	const buttonClasses = `${container()} ${rest.className}`;
 
 	if (link && !linkOptions?.external) {
 		return (
@@ -162,7 +201,7 @@ export function Button(props: Props) {
 
 	return (
 		<button {...rest} className={buttonClasses}>
-			{children}
+			<span className={content()}>{children}</span>
 		</button>
 	);
 }
