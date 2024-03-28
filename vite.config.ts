@@ -14,10 +14,13 @@ export default defineConfig({
 	],
 	build: {
 		lib: {
-			entry: path.resolve(__dirname, 'src/index.ts'),
+			entry: [
+				path.resolve(__dirname, 'src/index.ts'),
+				path.resolve(__dirname, 'src/preset.ts'),
+			],
 			name: 'WillUI',
 			formats: ['es'],
-			fileName: (format) => `index.${format}.js`,
+			fileName: (format, entryName) => `${entryName}.js`,
 		},
 		rollupOptions: {
 			external: [
@@ -26,7 +29,6 @@ export default defineConfig({
 				'unocss',
 				'react/jsx-runtime',
 				'@inertiajs/react',
-				'tailwind-variants',
 				'framer-motion',
 				'@ark-ui/react',
 			],
