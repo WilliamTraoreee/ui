@@ -25,9 +25,10 @@ export interface Props extends ComponentPropsWithoutRef<'input'> {
 const inputTV = tv({
 	slots: {
 		container:
-			'flex items-center transition-all duration-200 relative w-full border border-solid border-transparent bg-dark-600 gap-1',
+			'flex items-center transition-all duration-200 relative w-full bg-dark-600 p-[1px] bg-dark-600 gap-1',
+		content: 'bg-dark-600 flex items-center w-full gap-1',
 		input:
-			'unset-all appearance-none block bg-dark-600 border border-solid border-transparent rounded-md h-10 outline-none text-white text-base transition-all duration-200 placeholder:text-dark-300 text-sm font-sans font-medium w-full ',
+			'unset-all appearance-none block bg-dark-600 border border-solid border-transparent h-10 outline-none text-white text-base transition-all duration-200 placeholder:text-dark-300 text-sm font-sans font-medium w-full ',
 		componentContainer: 'w-full flex flex-col gap-2',
 		labelText: 'text-sm font-medium',
 		successMessageText: 'text-sm font-medium text-success-500',
@@ -50,7 +51,7 @@ const inputTV = tv({
 		gradient: {
 			true: {
 				container:
-					'relative border border-transparent bg-clip-padding before:content-[""] before:absolute before:top-0 before:right-0 before:bottom-0 before:left-0 before:z-[-1] before:bg-gradient-to-b before:m-[-1px] before:rounded-md before:transition-all before:duration-200 before:ease-in-out to-transparent !border-none from-dark-400/30',
+					'bg-gradient-to-b transition-all duration-200 to-transparent from-dark-400/30',
 				input: '',
 			},
 			false: {
@@ -85,11 +86,13 @@ const inputTV = tv({
 		rounded: {
 			true: {
 				container: 'rounded-full',
+				content: 'rounded-full',
 				input: 'rounded-full',
 			},
 			false: {
 				container: 'rounded-md',
-				input: 'rounded-md',
+				content: 'rounded-[5px]',
+				input: 'rounded',
 			},
 		},
 		icon: {
@@ -170,6 +173,7 @@ export function Input(props: Props) {
 	const [isFocus, setIsFocus] = useState(false);
 	const {
 		container,
+		content,
 		input,
 		componentContainer,
 		labelText,
@@ -209,18 +213,23 @@ export function Input(props: Props) {
 					</div>
 				)}
 				<div className={`${container()} ${inputContainerClassName}`}>
-					{icon && (
-						<Icon name={icon} className={`${iconElement()} ${iconClassName}`} />
-					)}
-					{prefix && <span className={prefixElement()}>{prefix}</span>}
-					<input
-						{...rest}
-						className={`${input()} ${rest.className}`}
-						onFocus={() => setIsFocus(true)}
-						onBlur={() => setIsFocus(false)}
-					/>
-					{suffix && <span className={suffixElement()}>{suffix}</span>}
-					{children}
+					<div className={content()}>
+						{icon && (
+							<Icon
+								name={icon}
+								className={`${iconElement()} ${iconClassName}`}
+							/>
+						)}
+						{prefix && <span className={prefixElement()}>{prefix}</span>}
+						<input
+							{...rest}
+							className={`${input()} ${rest.className}`}
+							onFocus={() => setIsFocus(true)}
+							onBlur={() => setIsFocus(false)}
+						/>
+						{suffix && <span className={suffixElement()}>{suffix}</span>}
+						{children}
+					</div>
 				</div>
 			</label>
 			{successMessage && (
