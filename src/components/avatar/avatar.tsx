@@ -12,18 +12,8 @@ interface Props {
 const avatar = tv({
 	slots: {
 		withoutSrc:
-			'rounded aspect-square flex items-center justify-center text-sm font-medium',
+			'rounded aspect-square flex items-center justify-center text-sm font-medium bg-dark-600 text-dark-200 light:bg-light-200 light:text-light-600',
 		withSrc: 'aspect-square rounded',
-	},
-	variants: {
-		variant: {
-			dark: {
-				withoutSrc: 'bg-dark-600 text-dark-200',
-			},
-			light: {
-				withoutSrc: 'bg-light-200 text-light-700',
-			},
-		},
 	},
 });
 
