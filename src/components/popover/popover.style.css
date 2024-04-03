@@ -1,0 +1,29 @@
+[data-part='content'][data-state='open'] {
+	animation: popoverReveal 0.2s ease forwards;
+}
+
+[data-part='content'][data-state='closed'] {
+	animation: popoverHide 0.2s ease forwards;
+}
+
+@keyframes popoverReveal {
+	0% {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes popoverHide {
+	0% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	100% {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+}
