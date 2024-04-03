@@ -32,10 +32,11 @@ export interface Props {
 const inputTV = tv({
 	slots: {
 		container:
-			'flex items-center transition-all duration-200 relative w-full p-[1px] bg-dark-600 gap-1',
-		content: 'bg-dark-600 flex items-center w-full gap-1 rounded-[5px]',
+			'flex items-center transition-all duration-200 relative w-full p-[1px] bg-dark-600 light:bg-light-200 gap-1',
+		content:
+			'bg-dark-600 light:bg-light-200 flex items-center w-full gap-1 rounded-[5px]',
 		input:
-			'unset-all appearance-none block bg-dark-600 border border-solid border-transparent rounded-md h-10 outline-none text-white text-base transition-all duration-200 placeholder:text-dark-300 text-sm font-sans font-medium flex justify-between items-center gap-3 w-full',
+			'unset-all appearance-none block bg-dark-600 light:bg-light-200 border border-solid border-transparent rounded-md h-10 outline-none text-white text-base transition-all duration-200 placeholder:text-dark-300 text-sm font-sans font-medium flex justify-between items-center gap-3 w-full light:text-dark-700',
 		componentContainer: 'w-full flex flex-col gap-2',
 		labelText: 'text-sm font-medium',
 		successMessageText: 'text-sm font-medium text-success-500',

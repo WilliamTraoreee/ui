@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Component: Story = {
 	args: {
-		children: <p>Hover me</p>,
+		children: <p className='text-white light:text-black'>Hover me</p>,
 		content: 'Tooltip content',
 	},
 };

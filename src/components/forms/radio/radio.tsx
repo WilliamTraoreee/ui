@@ -11,6 +11,7 @@ interface Props {
 	labelClassName?: string;
 	information?: string;
 	containerClassName?: string;
+	listClassName?: string;
 	successMessage?: string;
 	errorMessage?: string;
 	defaultValue?: string;
@@ -19,8 +20,8 @@ interface Props {
 
 const radioTV = tv({
 	slots: {
-		labelText: 'text-sm font-medium',
-		box: 'w-4 h-4 rounded-sm mr-2 flex items-center justify-center bg-dark-800 cursor-pointer transition-colors duration-200 ease-in-out shrink-0 rounded-full data-[state="checked"]:bg-primary-500 data-[disabled]:bg-dark-400',
+		labelText: 'text-sm font-medium light:text-dark-400',
+		box: 'w-4 h-4 rounded-sm mr-2 flex items-center justify-center bg-dark-800 light:bg-light-400 cursor-pointer transition-colors duration-200 ease-in-out shrink-0 rounded-full data-[state="checked"]:bg-primary-500 data-[disabled]:!bg-dark-400',
 		successMessageText: 'text-sm font-medium text-success-500',
 		errorMessageText: 'text-sm font-medium text-error-500',
 		itemElement: 'flex items-center gap-1 mb-1 last:mb-0',
@@ -47,6 +48,7 @@ export function Radio(props: Props) {
 		labelClassName,
 		information,
 		containerClassName,
+		listClassName,
 		successMessage,
 		errorMessage,
 		defaultValue,
@@ -86,19 +88,21 @@ export function Radio(props: Props) {
 					</div>
 				)}
 				<RadioGroup.Indicator className={indicator()} />
-				{items.map((item) => (
-					<RadioGroup.Item
-						key={item.value}
-						value={item.value}
-						disabled={item.disabled}
-						className={itemElement()}
-					>
-						<RadioGroup.ItemControl className={box()} />
-						<RadioGroup.ItemText className={labelText()}>
-							{item.label}
-						</RadioGroup.ItemText>
-					</RadioGroup.Item>
-				))}
+				<div className={listClassName}>
+					{items.map((item) => (
+						<RadioGroup.Item
+							key={item.value}
+							value={item.value}
+							disabled={item.disabled}
+							className={itemElement()}
+						>
+							<RadioGroup.ItemControl className={box()} />
+							<RadioGroup.ItemText className={labelText()}>
+								{item.label}
+							</RadioGroup.ItemText>
+						</RadioGroup.Item>
+					))}
+				</div>
 			</RadioGroup.Root>
 			{successMessage && (
 				<span className={successMessageText()}>{successMessage}</span>

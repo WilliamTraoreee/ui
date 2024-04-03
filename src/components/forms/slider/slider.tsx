@@ -78,7 +78,7 @@ export function Slider(props: Props) {
 					className='relative flex-1'
 				>
 					<SliderPrimitive.Control className='relative'>
-						<SliderPrimitive.Track className='w-full h-2 bg-dark-800 rounded-full'>
+						<SliderPrimitive.Track className='w-full h-2 bg-dark-800 light:bg-light-200 rounded-full'>
 							<SliderPrimitive.Range className='bg-primary-500 h-2 rounded-full' />
 						</SliderPrimitive.Track>
 						<SliderPrimitive.Thumb

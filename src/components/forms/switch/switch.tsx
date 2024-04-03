@@ -15,7 +15,7 @@ const switchTV = tv({
 		labelText: 'text-sm font-medium',
 		container: 'flex items-center gap-2',
 		control:
-			'bg-dark-600 flex rounded-full items-center data-[state="checked"]:bg-primary-500 transition-all duration-200 shrink-0',
+			'bg-dark-600 bg-light-200 flex rounded-full items-center data-[state="checked"]:bg-primary-500 transition-all duration-200 shrink-0',
 		thumb: 'bg-white rounded-full transition-all duration-200 relative',
 	},
 	variants: {

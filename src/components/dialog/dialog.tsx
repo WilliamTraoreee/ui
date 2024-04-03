@@ -19,10 +19,10 @@ interface Props {
 
 const dialogTV = tv({
 	slots: {
-		backdrop: 'fixed inset-0 bg-black/10 bg-opacity-50 z-10',
+		backdrop: 'fixed inset-0 bg-black/10 bg-opacity-50 -z-10 light:bg-black/70',
 		content:
-			'fixed z-100 !bg-dark-800 rounded-lg p-4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 max-w-lg shadow-lg',
-		titleElement: 'text-white text-2xl font-medium m-0',
+			'fixed z-100 bg-dark-800 light:bg-light-100 light:text-dark-700 rounded-lg p-4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 max-w-lg shadow-lg z-20',
+		titleElement: 'text-white light:text-dark-700 text-2xl font-medium m-0',
 		motionElement: 'fixed w-full',
 	},
 	variants: {

@@ -18,7 +18,7 @@ export function Tooltip(props: Props) {
 			positioning={{ placement: 'top' }}
 		>
 			<TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
-			<TooltipPrimitive.Positioner>
+			<TooltipPrimitive.Positioner className='z-20'>
 				<motion.div
 					initial={{
 						y: 5,
@@ -29,9 +29,9 @@ export function Tooltip(props: Props) {
 						opacity: 1,
 					}}
 				>
-					<TooltipPrimitive.Content className='text-sm bg-dark-800 rounded px-2 py-1'>
+					<TooltipPrimitive.Content className='text-sm bg-dark-800 light:bg-light-300 rounded px-2 py-1 light:text-dark-700 font-medium z-20'>
 						<TooltipPrimitive.Arrow
-							className='bg-dark-800 rotate-45 rounded-sm'
+							className='bg-dark-800 light:bg-light-300 rotate-45 rounded-sm'
 							style={
 								{
 									'--arrow-size': '12px',

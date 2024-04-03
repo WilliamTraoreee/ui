@@ -7,7 +7,7 @@ const clipboard = tv({
 	slots: {
 		input: '!pr-11',
 		iconClipboard:
-			'absolute right-1 top-1 p-2 bg-transparent border-none flex items-center justify-center cursor-pointer text-base text-dark-200 rounded w-8 h-8 bg-dark-700',
+			'absolute right-1 top-1 p-2 bg-transparent border-none flex items-center justify-center cursor-pointer text-base text-dark-200 rounded w-8 h-8 bg-dark-700 light:bg-light-500 light:text-light-700',
 	},
 	variants: {
 		icon: {

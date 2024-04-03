@@ -25,17 +25,17 @@ export interface Props extends ComponentPropsWithoutRef<'input'> {
 const inputTV = tv({
 	slots: {
 		container:
-			'flex items-center transition-all duration-200 relative w-full bg-dark-600 p-[1px] bg-dark-600 gap-1',
-		content: 'bg-dark-600 flex items-center w-full gap-1',
+			'flex items-center transition-all duration-200 relative w-full bg-dark-600 p-[1px] bg-dark-600 light:bg-light-200 gap-1',
+		content: 'bg-dark-600 light:bg-light-200 flex items-center w-full gap-1',
 		input:
-			'unset-all appearance-none block bg-dark-600 border border-solid border-transparent h-10 outline-none text-white text-base transition-all duration-200 placeholder:text-dark-300 text-sm font-sans font-medium w-full ',
+			'unset-all appearance-none block bg-dark-600 light:bg-light-200 border border-solid border-transparent h-10 outline-none text-white light:text-dark-700 text-base transition-all duration-200 placeholder:text-dark-300 text-sm font-sans font-medium w-full ',
 		componentContainer: 'w-full flex flex-col gap-2',
-		labelText: 'text-sm font-medium',
+		labelText: 'text-sm font-medium light:text-dark-400',
 		successMessageText: 'text-sm font-medium text-success-500',
 		errorMessageText: 'text-sm font-medium text-error-500',
 		iconElement: '!ml-3',
-		suffixElement: 'text-sm font-medium text-dark-300 pr-3',
-		prefixElement: 'text-sm font-medium text-dark-300 pl-3',
+		suffixElement: 'text-sm font-medium text-dark-300 light:text-dark-500 pr-3',
+		prefixElement: 'text-sm font-medium text-dark-300 light:text-dark-500 pl-3',
 	},
 	variants: {
 		suffix: {
@@ -51,7 +51,7 @@ const inputTV = tv({
 		gradient: {
 			true: {
 				container:
-					'bg-gradient-to-b transition-all duration-200 to-transparent from-dark-400/30',
+					'bg-gradient-to-b transition-all duration-200 to-transparent from-dark-400/30 light:from-light-400',
 			},
 		},
 		isSuccess: {
