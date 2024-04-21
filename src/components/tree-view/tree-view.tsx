@@ -51,7 +51,7 @@ function SingleBranch(props: TreeItem) {
   return (
     <TreeViewPrimitive.Item
       id={title + Math.random()}
-      className="group"
+      className="group w-full"
       light="text-dark-500"
       light:hover="hover:bg-light-100"
       dark="text-light-500"
@@ -96,12 +96,21 @@ function BranchLevel1(props: TreeItem) {
       >
         <Button
           link={link}
-          className="!outline-none"
+          className="!outline-none relative"
           contentClassName={`font-medium justify-between ${menu && menu.length ? "pr-1" : ""}`}
           onClick={onItemClick}
           variant={isCurrent ? "primary" : "transparent"}
           size="md"
         >
+          <span
+            className="absolute w-6 h-6 top-1 left-1 flex items-center justify-center z-1 rounded opacity-0 group-hover:opacity-100"
+            dark="bg-dark-700"
+            dark:hover="bg-dark-800"
+            light="bg-light-200 text-light-600"
+            light:hover="bg-light-300"
+          >
+            <Icon name="i-ri:arrow-right-s-line" />
+          </span>
           <TreeViewPrimitive.BranchText className="flex gap-2 items-center">
             {prefix && <span>{prefix}</span>}
             {icon && <Icon name={icon} />}
@@ -111,10 +120,16 @@ function BranchLevel1(props: TreeItem) {
         </Button>
       </TreeViewPrimitive.BranchControl>
 
-      <TreeViewPrimitive.BranchContent className="list-none pl-5">
-        {children?.map((child, index) => {
-          return <BranchLevel2 {...child} key={index} />;
-        })}
+      <TreeViewPrimitive.BranchContent className="list-none pl-5 border-l border-l-solid dark:border-dark-400/50">
+        {children ? (
+          <>
+            {children.map((child, index) => {
+              return <BranchLevel2 {...child} key={index} />;
+            })}
+          </>
+        ) : (
+          <SingleBranch {...props} />
+        )}
       </TreeViewPrimitive.BranchContent>
     </TreeViewPrimitive.Branch>
   );
@@ -139,12 +154,21 @@ function BranchLevel2(props: TreeItem) {
       >
         <Button
           link={link}
-          className="!outline-none"
+          className="!outline-none relative"
           contentClassName={`font-medium justify-between ${menu && menu.length ? "pr-1" : ""}`}
           onClick={onItemClick}
           variant={isCurrent ? "primary" : "transparent"}
           size="md"
         >
+          <span
+            className="absolute w-6 h-6 top-1 left-1 flex items-center justify-center z-1 rounded opacity-0 group-hover:opacity-100"
+            dark="bg-dark-700"
+            dark:hover="bg-dark-800"
+            light="bg-light-200 text-light-600"
+            light:hover="bg-light-300"
+          >
+            <Icon name="i-ri:arrow-right-s-line" />
+          </span>
           <TreeViewPrimitive.BranchText className="flex gap-2 items-center">
             {prefix && <span>{prefix}</span>}
             {icon && <Icon name={icon} />}
@@ -154,10 +178,16 @@ function BranchLevel2(props: TreeItem) {
         </Button>
       </TreeViewPrimitive.BranchControl>
 
-      <TreeViewPrimitive.BranchContent className="list-none pl-5">
-        {children?.map((child, index) => {
-          return <BranchLevel1 {...child} key={index} />;
-        })}
+      <TreeViewPrimitive.BranchContent className="list-none pl-5 border-l border-l-solid dark:border-dark-400/50">
+        {children ? (
+          <>
+            {children.map((child, index) => {
+              return <BranchLevel1 {...child} key={index} />;
+            })}
+          </>
+        ) : (
+          <SingleBranch {...props} />
+        )}
       </TreeViewPrimitive.BranchContent>
     </TreeViewPrimitive.Branch>
   );
