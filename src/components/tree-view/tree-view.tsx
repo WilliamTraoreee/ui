@@ -19,6 +19,7 @@ type TreeItem = {
   onItemClick?: MouseEventHandler<HTMLButtonElement> | undefined;
   children?: TreeItem[];
   menu?: MenuItem[];
+  onAddButtonClick?: MouseEventHandler<HTMLButtonElement> | undefined;
 };
 
 interface Props {
@@ -46,7 +47,16 @@ export function TreeView(props: Props) {
 }
 
 function SingleBranch(props: TreeItem) {
-  const { title, icon, prefix, link, isCurrent, menu, onItemClick } = props;
+  const {
+    title,
+    icon,
+    prefix,
+    link,
+    isCurrent,
+    menu,
+    onItemClick,
+    onAddButtonClick,
+  } = props;
 
   return (
     <TreeViewPrimitive.Item
@@ -71,15 +81,39 @@ function SingleBranch(props: TreeItem) {
           {icon && <Icon name={icon} />}
           {title}
         </TreeViewPrimitive.ItemText>
-        {menu && <MenuPopover menu={menu} />}
+        <div className="flex gap-0.5">
+          {onAddButtonClick && (
+            <button
+              size="sm"
+              className="!focus:outline-none !outline-transparent opacity-0 group-hover:opacity-100 flex w-6 h-6 flex items-center justify-center transition-opacity duration-200 rounded border-none"
+              dark="bg-dark-700 text-white"
+              dark:hover="bg-dark-800"
+              light="bg-light-200 text-light-600"
+              light:hover="bg-light-300"
+              onClick={onAddButtonClick}
+            >
+              <Icon name="i-ri:add-line" />
+            </button>
+          )}
+          {menu && <MenuPopover menu={menu} />}
+        </div>
       </Button>
     </TreeViewPrimitive.Item>
   );
 }
 
 function BranchLevel1(props: TreeItem) {
-  const { title, icon, prefix, link, isCurrent, menu, children, onItemClick } =
-    props;
+  const {
+    title,
+    icon,
+    prefix,
+    link,
+    isCurrent,
+    menu,
+    children,
+    onItemClick,
+    onAddButtonClick,
+  } = props;
 
   return (
     <TreeViewPrimitive.Branch
@@ -116,7 +150,22 @@ function BranchLevel1(props: TreeItem) {
             {icon && <Icon name={icon} />}
             {title}
           </TreeViewPrimitive.BranchText>
-          {menu && <MenuPopover menu={menu} />}
+          <div className="flex gap-0.5">
+            {onAddButtonClick && (
+              <button
+                size="sm"
+                className="!focus:outline-none !outline-transparent opacity-0 group-hover:opacity-100 flex w-6 h-6 flex items-center justify-center transition-opacity duration-200 rounded border-none"
+                dark="bg-dark-700 text-white"
+                dark:hover="bg-dark-800"
+                light="bg-light-200 text-light-600"
+                light:hover="bg-light-300"
+                onClick={onAddButtonClick}
+              >
+                <Icon name="i-ri:add-line" />
+              </button>
+            )}
+            {menu && <MenuPopover menu={menu} />}
+          </div>
         </Button>
       </TreeViewPrimitive.BranchControl>
 
@@ -136,8 +185,17 @@ function BranchLevel1(props: TreeItem) {
 }
 
 function BranchLevel2(props: TreeItem) {
-  const { title, icon, prefix, link, isCurrent, menu, children, onItemClick } =
-    props;
+  const {
+    title,
+    icon,
+    prefix,
+    link,
+    isCurrent,
+    menu,
+    children,
+    onItemClick,
+    onAddButtonClick,
+  } = props;
 
   return (
     <TreeViewPrimitive.Branch
@@ -174,7 +232,22 @@ function BranchLevel2(props: TreeItem) {
             {icon && <Icon name={icon} />}
             {title}
           </TreeViewPrimitive.BranchText>
-          {menu && <MenuPopover menu={menu} />}
+          <div className="flex gap-0.5">
+            {onAddButtonClick && (
+              <button
+                size="sm"
+                className="!focus:outline-none !outline-transparent opacity-0 group-hover:opacity-100 flex w-6 h-6 flex items-center justify-center transition-opacity duration-200 rounded border-none"
+                dark="bg-dark-700 text-white"
+                dark:hover="bg-dark-800"
+                light="bg-light-200 text-light-600"
+                light:hover="bg-light-300"
+                onClick={onAddButtonClick}
+              >
+                <Icon name="i-ri:add-line" />
+              </button>
+            )}
+            {menu && <MenuPopover menu={menu} />}
+          </div>
         </Button>
       </TreeViewPrimitive.BranchControl>
 
