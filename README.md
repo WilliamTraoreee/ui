@@ -12,6 +12,14 @@ All external issue will be automatically close.
 
 `npm i @wtraore/ui`
 
+### CSS
+
+import the css file in your project
+
+```js
+import '@wtraore/ui/style.css';
+```
+
 ### UnoCSS configuration
 
 ```js
